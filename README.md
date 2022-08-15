@@ -10,8 +10,7 @@ notification.show(primaryStage);
 ```
 
 ## Styling
-
-if you have added style sheet in your scene of parent window, and you use simple notification then you have to style it from your css file.
+if you have added the css style sheet into your scene of owner window, and you use simple notification then you have to style it from your css file.
 <br>
 otherwise default style will be added.
 
