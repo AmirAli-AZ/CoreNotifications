@@ -42,10 +42,8 @@ public class SimpleNotification extends Notification {
         getContent().add(content);
 
         addEventHandler(WindowEvent.WINDOW_SHOWN, windowEvent -> {
-            var styleSheets = getScene().getStylesheets();
-
-            if (styleSheets.isEmpty())
-                styleSheets.add(Objects.requireNonNull(getClass().getResource("default-simple-notification-style.css")).toExternalForm());
+            if (getScene().getStylesheets().isEmpty())
+                getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource("default-simple-notification-style.css")).toExternalForm());
         });
     }
 
