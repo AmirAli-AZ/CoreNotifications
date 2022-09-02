@@ -1,5 +1,6 @@
 package net.core.corenotifications;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.ObjectProperty;
@@ -67,10 +68,11 @@ public class Notification extends Popup {
         }
 
         if (getDuration() != null) {
-            timeline = new Timeline(new KeyFrame(getDuration(), actionEvent -> {
-                if (isShowing())
+            timeline = new Timeline(new KeyFrame(getDuration()));
+            timeline.statusProperty().addListener((observableValue, oldStatus, newStatus) -> {
+                if (newStatus == Animation.Status.STOPPED && isShowing())
                     hide();
-            }));
+            });
             currentTimeProperty.bind(timeline.currentTimeProperty());
             timeline.play();
         }
@@ -83,7 +85,7 @@ public class Notification extends Popup {
             e.printStackTrace();
         }
 
-        if (timeline != null && timeline.getCurrentTime() != getDuration())
+        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING)
             timeline.stop();
     };
 
