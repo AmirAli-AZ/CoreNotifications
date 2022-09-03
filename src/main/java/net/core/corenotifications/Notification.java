@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -43,7 +44,9 @@ public class Notification extends Popup {
                 throw new IllegalArgumentException("The time is invalid");
             super.set(duration);
         }
-    }, currentTimeProperty = new SimpleObjectProperty<>(Duration.ZERO);
+    };
+
+    private final ReadOnlyObjectWrapper<Duration> currentTimeProperty = new ReadOnlyObjectWrapper<>(Duration.ZERO);
 
     private Timeline timeline;
 
@@ -69,8 +72,8 @@ public class Notification extends Popup {
 
         if (getDuration() != null) {
             timeline = new Timeline(new KeyFrame(getDuration()));
-            timeline.statusProperty().addListener((observableValue, oldStatus, newStatus) -> {
-                if (newStatus == Animation.Status.STOPPED && isShowing())
+            timeline.setOnFinished(actionEvent -> {
+                if (isShowing())
                     hide();
             });
             currentTimeProperty.bind(timeline.currentTimeProperty());
