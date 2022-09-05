@@ -9,7 +9,6 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.stage.WindowEvent;
@@ -50,16 +49,8 @@ public class NotificationBase extends Popup {
 
     private Timeline timeline;
 
-    public NotificationBase(@NotNull Parent parent) {
-        super();
-
-        init(parent);
-    }
-
     public NotificationBase() {
-        super();
-
-        init(null);
+        init();
     }
 
     private final EventHandler<WindowEvent> onShown = windowEvent -> {
@@ -92,11 +83,7 @@ public class NotificationBase extends Popup {
             timeline.stop();
     };
 
-    private void init(Parent parent) {
-        if (parent != null) {
-            parent.getStyleClass().add("notification");
-            getContent().add(parent);
-        }
+    private void init() {
         setAutoHide(true);
         addEventHandler(WindowEvent.WINDOW_SHOWN, onShown);
         addEventHandler(WindowEvent.WINDOW_HIDDEN, onHidden);
@@ -152,11 +139,11 @@ public class NotificationBase extends Popup {
         positionProperty.set(position);
     }
 
-    public Position getPosition() {
+    public final Position getPosition() {
         return positionProperty.get();
     }
 
-    public ObjectProperty<Position> positionProperty() {
+    public final ObjectProperty<Position> positionProperty() {
         return positionProperty;
     }
 
@@ -164,11 +151,11 @@ public class NotificationBase extends Popup {
         marginProperty.set(margin);
     }
 
-    public Insets getMargin() {
+    public final Insets getMargin() {
         return marginProperty.get();
     }
 
-    public ObjectProperty<Insets> marginProperty() {
+    public final ObjectProperty<Insets> marginProperty() {
         return marginProperty;
     }
 
@@ -176,19 +163,19 @@ public class NotificationBase extends Popup {
         durationProperty.set(duration);
     }
 
-    public Duration getDuration() {
+    public final Duration getDuration() {
         return durationProperty.get();
     }
 
-    public ObjectProperty<Duration> durationProperty() {
+    public final ObjectProperty<Duration> durationProperty() {
         return durationProperty;
     }
 
-    public Duration getCurrentTime() {
+    public final Duration getCurrentTime() {
         return currentTimeProperty.get();
     }
 
-    public ReadOnlyObjectProperty<Duration> currentTimeProperty() {
+    public final ReadOnlyObjectProperty<Duration> currentTimeProperty() {
         return currentTimeProperty;
     }
 

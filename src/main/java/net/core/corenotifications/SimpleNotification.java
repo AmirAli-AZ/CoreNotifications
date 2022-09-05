@@ -21,18 +21,15 @@ public class SimpleNotification extends NotificationBase {
             titleProperty = new SimpleStringProperty(),
             messageProperty = new SimpleStringProperty();
 
-    public SimpleNotification(@NotNull String title, @NotNull String message) {
+    public SimpleNotification() {
         super();
-
-        titleProperty.set(title);
-        messageProperty.set(message);
 
         init();
     }
 
-    public SimpleNotification() {
-        super();
-
+    public SimpleNotification(@NotNull String title, @NotNull String message) {
+        setTitle(title);
+        setMessage(message);
         init();
     }
 
@@ -83,11 +80,11 @@ public class SimpleNotification extends NotificationBase {
         titleProperty.set(title);
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return titleProperty.get();
     }
 
-    public StringProperty titleProperty() {
+    public final StringProperty titleProperty() {
         return titleProperty;
     }
 
@@ -95,11 +92,11 @@ public class SimpleNotification extends NotificationBase {
         messageProperty.set(message);
     }
 
-    public String getMessage() {
+    public final String getMessage() {
         return messageProperty.get();
     }
 
-    public StringProperty messageProperty() {
+    public final StringProperty messageProperty() {
         return messageProperty;
     }
 }
