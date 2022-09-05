@@ -27,7 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-public class Notification extends Popup {
+public class NotificationBase extends Popup {
 
     private final Path notificationInfoPath = Paths.get(Environment.getAppData() + File.separator + "notification-info.json");
 
@@ -50,13 +50,13 @@ public class Notification extends Popup {
 
     private Timeline timeline;
 
-    public Notification(@NotNull Parent parent) {
+    public NotificationBase(@NotNull Parent parent) {
         super();
 
         init(parent);
     }
 
-    public Notification() {
+    public NotificationBase() {
         super();
 
         init(null);

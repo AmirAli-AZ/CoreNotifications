@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class SimpleNotification extends Notification {
+public class SimpleNotification extends NotificationBase {
 
     private final StringProperty
             titleProperty = new SimpleStringProperty(),
