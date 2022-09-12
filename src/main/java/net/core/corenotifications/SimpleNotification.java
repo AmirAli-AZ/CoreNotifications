@@ -28,6 +28,8 @@ public class SimpleNotification extends NotificationBase {
     }
 
     public SimpleNotification(@NotNull String title, @NotNull String message) {
+        super();
+
         setTitle(title);
         setMessage(message);
         init();
